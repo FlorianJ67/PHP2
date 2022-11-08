@@ -3,8 +3,14 @@
 <?php
 
 function convertirMajRouge(string $var){
-    echo strtoupper("<font color=\"red\">$var</font>");
+    echo mb_strtoupper("<font color=\"red\">$var</font>");
 };
+/*          */
+// function convertirMajRouge(string $var){
+//     $var = mb_strtoupper($var);
+//     echo "<font color=\"red\">$var</font>";
+// };
+
 
 $texte = "Mon texte en paramètre";
 
