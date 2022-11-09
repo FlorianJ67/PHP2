@@ -5,20 +5,24 @@
 function genererCheckbox($inputTab) {
     echo '<fieldset>
     <legend>Select your choice:</legend>';
-    foreach ($inputTab as $input) {
+    foreach ($inputTab as $input => $checked) {
         echo '<div>
-                <input type="checkbox" id=" ' .$input. ' " name="scales" >
+                <input type="checkbox" id=" ' .$input. ' " name="scales" ';
+             if ($checked == 1) {
+                echo 'checked';
+             }  
+        echo '>
                 <label for="' .$input. '">' .$input. '</label>
             </div>';
     }
     echo '</fieldset>'; 
 }
 
-$civility = [
-    "Choix 1",
-    "Choix 2",
-    "Choix 3"
+$choice = [
+    "Choix 1" => 0,
+    "Choix 2" => 1,
+    "Choix 3" => 0
 ];
-genererCheckbox($civility);
+genererCheckbox($choice);
 
 ?>
