@@ -26,5 +26,6 @@ $capitales = [
     "USA" =>"Washington",
     "Italie" =>"Rome"
 ];
+
 afficherTableHTML($capitales);
 ?>
