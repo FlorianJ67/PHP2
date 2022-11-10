@@ -53,6 +53,25 @@ function getdatenottheoneondefault($date) {
 
     echo $date->format('Y');
 }
+/* - - penser a utiliser un switch après avoir crée un tableau
+switch ($date) {
+    case Mon:
+        echo "Lundi";
+        break;
+    case Tue:
+        echo "Mardi";
+        break;
+    case Wed:
+        echo "Mercredi";
+        break;
+}
+
+
+
+
+*/ 
+
+
 
 //- - Déclare une date
 $exempledate=date_create("2018-02-23");

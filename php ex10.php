@@ -14,7 +14,7 @@ function alimenterListeDeroulante($inputTab,$categorie) {
     echo '<label for="civ-select">' .$categorie. ' :</label>
 
     <select name="civility" id="civ-select">
-    <option value="">' .$categorie. '</option>';
+    <option value="" disabled selected>' .$categorie. '</option>';
     foreach ($inputTab as $input) {
         echo '<option value=" ' .$input. ' ">' .$input. '</option>';
     }
