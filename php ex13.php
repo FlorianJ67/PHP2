@@ -55,22 +55,22 @@ Class Voiture {
     }
 
 
-    //
+    //Info du Véhicule
     public function displayCarInfo() {
 
         echo "Info Véhicule <br>
         ****************************<br>
         Nom et modèle du véhicule : " .$this->getMarque().$this->getModèle. "<br>
         Nombre de portes : " .$this->getNbPorte(). "<br>
-        Le véhicule" .$this->getMarque(). "est ";
+        Le véhicule" .$this->getMarque(). " est ";
         if ($this->getSpeed() <= 0){
             echo "à l'arrêt";
         } else {
             echo "démarer";
         }
         echo "<br>Sa vitesse actuelle est de : " .$this->getSpeed(). " Km/h";
-
     } 
+
 };
 
 
