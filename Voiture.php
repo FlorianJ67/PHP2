@@ -3,8 +3,8 @@
 <?php
 
 class Voiture {
-    private $_marque;
-    private $_modele;
+    protected $_marque;
+    protected $_modele;
 
     public function __construct(string $marque,string $modele){
         $this->_marque = $marque;
