@@ -3,18 +3,21 @@
 <?php
 
 //creation classe
-Class Voiture {
+class Voiture {
     private $_marque;
-    private $_modèle;
+    private $_modele;
     private $_nbPortes;
-    private $_vitesseActuelle = 0;
-    private $_Démarrer = 0;
+    private $_vitesseActuelle;
+    private $_demarrer;
 
     //fonction Créer un voiture
-    public function __construct($marque,$modèle,$porte){
+    public function __construct($marque,$modele,$porte){
         $this->_marque = $marque;
-        $this->_modèle = $modèle;
+        $this->_modele = $modele;
         $this->_nbPortes = $porte;
+        $this_vitesseActuelle = 0;
+        $this_demarrer = false;
+    
     }
 
     //renvoyer des propriété de la voiture
@@ -22,8 +25,8 @@ Class Voiture {
     public function getMarque(){
         return $this->_marque;
     }
-    public function getModèle(){
-        return $this->_modèle;
+    public function getModele(){
+        return $this->_modele;
     }
     public function getNbPorte(){
         return $this->_nbPortes;
@@ -32,7 +35,7 @@ Class Voiture {
         return $this->_vitesseActuelle;
     }
     public function getEtat(){
-        return $this->_Démarrer;
+        return $this->_demarrer;
     }
         
     //modifie une propritété
@@ -40,8 +43,8 @@ Class Voiture {
     public function setMarque($marque){
         $this->_marque = $marque;
     }
-    public function setModèle($modèle){
-        $this->_modèle = $modèle;
+    public function setModele($modele){
+        $this->_modèle = $modele;
     }
     public function setNbPorte($porte){
         $this->_nbPortes = $porte;
@@ -50,23 +53,37 @@ Class Voiture {
         
     //gerer la vitesse de la voiture
     public function demarrer() {
-        $this->_Démarrer = 1;
+        $this->_demarrer = true;
 
-        echo "Le véhicule " .$this->getMarque(). " " .$this->getModèle(). " démarre<br>";
+        echo "Le véhicule $this démarre<br>";
     }
     public function accelerer($speed) {
-        if ($this->getEtat() == 0){
-            echo "Le véhicule " .$this->getMarque(). " " .$this->getModèle(). " veut accélerer de " .$speed. " Km/h<br>
-            Pour accélerer, il faut démarrer le véhicule " .$this->getMarque(). " " .$this->getModèle(). " !<br>";
+        if (!$this->getEtat()){
+            echo "Le véhicule $this veut accélerer de " .$speed. " Km/h<br>
+            Pour accélerer, il faut démarrer le véhicule $this !<br>";
         } else {
-        $this->_vitesseActuelle += $speed;
-        echo "Le véhicule " .$this->getMarque(). " " .$this->getModèle(). " accélère à " .$this->getSpeed(). " Km/h<br>" ;
+            $this->_vitesseActuelle += $speed;
+            echo "Le véhicule $this accélère à " .$this->getSpeed(). " Km/h<br>" ;
         }
     }
+    public function ralentir($speed) {
+        if (!$this->getEtat()){
+            echo "Le véhicule $this veut ralentir de " .$speed. " Km/h<br>
+            Pour ralentir, il faut démarrer le véhicule $this !<br>";
+        } else {
+            if ($speed > $this->getSpeed()){
+               echo "Le véhicule $this ne peut ralentir plus qu'il ne roule déjà!<br>";
+           } else {
+               $this->_vitesseActuelle -= $speed;
+               echo "Le véhicule $this ralenti à " .$this->getSpeed(). " Km/h<br>" ;  
+           }
+        }
+    }
+
     public function stopper() {
-        $this->_Démarrer = 0;
+        $this->_demarrer = false;
         $this->_vitesseActuelle = 0;
-        echo "Le véhicule " .$this->getMarque(). " " .$this->getModèle(). " est stoppé<br>";
+        echo "Le véhicule $this est stoppé<br>";
     }
 
 
@@ -75,10 +92,10 @@ Class Voiture {
 
         echo "Info Véhicule <br>
         ****************************<br>
-        Nom et modèle du véhicule : " .$this->getMarque(). " " .$this->getModèle(). "<br>
+        Nom et modèle du véhicule : $this<br>
         Nombre de portes : " .$this->getNbPorte(). "<br>
         Le véhicule " .$this->getMarque(). " est ";
-        if ($this->getSpeed() <= 0){
+        if (!$this->getEtat()){
             echo "à l'arrêt";
         } else {
             echo "démarer";
@@ -86,7 +103,13 @@ Class Voiture {
         echo "<br>Sa vitesse actuelle est de : " .$this->getSpeed(). " Km/h<br><br>";
     } 
     public function displayCarSpeed() {
-        echo "La vitesse du véicule " .$this->getMarque(). " " .$this->getModèle(). " est de : " .$this->getSpeed(). " Km/h<br>";
+        echo "La vitesse du véicule $this est de : " .$this->getSpeed(). " Km/h<br>";
+    }
+
+    //Retourne la valeur lorsque qu'on écrit $this
+    public function __toString()
+    {
+        return $this->getMarque()." ".$this->getModele();
     }
 
 };
@@ -108,6 +131,9 @@ $v2->stopper();
 $v2->accelerer(20);
 $v1->displayCarSpeed();
 $v2->displayCarSpeed();
+
+$v1->ralentir(60);
+$v1->ralentir(30);
 
 ?>
 
