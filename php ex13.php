@@ -8,6 +8,7 @@ Class Voiture {
     private $_modèle;
     private $_nbPortes;
     private $_vitesseActuelle = 0;
+    private $_Démarrer = 0;
 
     //fonction Créer un voiture
     public function __construct($marque,$modèle,$porte){
@@ -30,6 +31,9 @@ Class Voiture {
     public function getSpeed(){
         return $this->_vitesseActuelle;
     }
+    public function getEtat(){
+        return $this->_Démarrer;
+    }
         
     //modifie une propritété
     //SET
@@ -42,16 +46,27 @@ Class Voiture {
     public function setNbPorte($porte){
         $this->_nbPortes = $porte;
     }
+
         
     //gerer la vitesse de la voiture
     public function demarrer() {
-    
+        $this->_Démarrer = 1;
+
+        echo "Le véhicule " .$this->getMarque(). " " .$this->getModèle(). " démarre<br>";
     }
-    public function accelerer() {
-        
+    public function accelerer($speed) {
+        if ($this->getEtat() == 0){
+            echo "Le véhicule " .$this->getMarque(). " " .$this->getModèle(). " veut accélerer de " .$speed. "<br>
+            Pour accélerer, il faut démarrer le véhicule " .$this->getMarque(). " " .$this->getModèle(). " !<br>";
+        } else {
+        $this->_vitesseActuelle += $speed;
+        echo "Le véhicule " .$this->getMarque(). " " .$this->getModèle(). " accélère à " .$this->getSpeed(). " Km/h<br>" ;
+        }
     }
     public function stopper() {
+        $this->_Démarrer = 0;
         $this->_vitesseActuelle = 0;
+        echo "Le véhicule " .$this->getMarque(). " " .$this->getModèle(). " est stoppé<br>";
     }
 
 
@@ -70,15 +85,29 @@ Class Voiture {
         }
         echo "<br>Sa vitesse actuelle est de : " .$this->getSpeed(). " Km/h<br><br>";
     } 
+    public function displayCarSpeed() {
+        echo "La vitesse du véicule " .$this->getMarque(). " " .$this->getModèle(). " est de : " .$this->getSpeed(). " Km/h<br>";
+    }
 
 };
 
-
+//Déclare les 2 nouveau véhicule
 $v1 = new Voiture("Peugeot","408",5);
 $v2 = new Voiture("Citroën","C4",3);
 
+//Affiche les info des véhicules
 $v1->displayCarInfo();
 $v2->displayCarInfo();
+
+
+// l'exemple d'affichage
+$v1->demarrer();
+$v1->accelerer(50);
+$v2->demarrer();
+$v2->stopper();
+$v2->accelerer(20);
+$v1->displayCarSpeed();
+$v2->displayCarSpeed();
 
 ?>
 
