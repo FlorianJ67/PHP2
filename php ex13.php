@@ -56,7 +56,7 @@ Class Voiture {
     }
     public function accelerer($speed) {
         if ($this->getEtat() == 0){
-            echo "Le véhicule " .$this->getMarque(). " " .$this->getModèle(). " veut accélerer de " .$speed. "<br>
+            echo "Le véhicule " .$this->getMarque(). " " .$this->getModèle(). " veut accélerer de " .$speed. " Km/h<br>
             Pour accélerer, il faut démarrer le véhicule " .$this->getMarque(). " " .$this->getModèle(). " !<br>";
         } else {
         $this->_vitesseActuelle += $speed;
