@@ -15,8 +15,8 @@ class Voiture {
         $this->_marque = $marque;
         $this->_modele = $modele;
         $this->_nbPortes = $porte;
-        $this_vitesseActuelle = 0;
-        $this_demarrer = false;
+        $this->_vitesseActuelle = 0;
+        $this->_demarrer = false;
     
     }
 
